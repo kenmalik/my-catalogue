@@ -34,16 +34,20 @@ function showCards() {
 
     for (record of display_selection) {
         const nextCard = templateCard.cloneNode(true); // Copy the template card
-        editCardContent(nextCard, record.title, record.image); // Edit title and image
+        editCardContent(nextCard, record.title, record.year, record.image); // Edit title and image
         cardContainer.appendChild(nextCard); // Add new card to the container
     }
 }
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, newTitle, newYear, newImageURL) {
     card.style.display = "block";
 
     const cardHeader = card.querySelector("h2");
     cardHeader.textContent = newTitle;
+
+    const cardYear = card.querySelector("h3");
+    cardYear.textContent =
+        newYear > 0 ? "(" + newYear + ")" : "Year not provided";
 
     // const cardImage = card.querySelector("img");
     // cardImage.src = newImageURL;
