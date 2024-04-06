@@ -25,14 +25,14 @@
 
 console.log(records);
 
-let display_selection = records;
+let displaySelection = records;
 
 function showCards() {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
     const templateCard = document.querySelector(".card");
 
-    for (record of display_selection) {
+    for (record of displaySelection) {
         const nextCard = templateCard.cloneNode(true); // Copy the template card
         editCardContent(nextCard, record.title, record.year, record.image); // Edit title and image
         cardContainer.appendChild(nextCard); // Add new card to the container
@@ -56,24 +56,51 @@ function editCardContent(card, newTitle, newYear, newImageURL) {
     // console.log("new card:", newTitle, "- html: ", card);
 }
 
+function loadSearchBar() {
+    loadSearch();
+    loadSort();
+    const searchBar = document.querySelector(".search-bar");
+    searchBar.addEventListener("submit", (event) => event.preventDefault());
+}
+
 function loadSearch() {
-    const search_bar = document.querySelector(".search-bar");
-    search_bar.addEventListener("input", search);
-    search_bar.addEventListener("submit", (event) => event.preventDefault());
+    const searchInput = document.getElementById("search");
+    searchInput.addEventListener("input", (event) =>
+        search(event, searchInput.value),
+    );
+}
+
+function loadSort() {
+    const sortSelect = document.getElementById("sort-select");
+    sortSelect.addEventListener("change", (event) =>
+        changeSortMethod(event, sortSelect.value),
+    );
 }
 
 document.addEventListener("DOMContentLoaded", showCards);
-document.addEventListener("DOMContentLoaded", loadSearch);
+document.addEventListener("DOMContentLoaded", loadSearchBar);
 
-function search(event) {
-    const search_input = document.getElementById("search");
-    event.preventDefault();
-    console.log("Searching", search_input.value);
-
-    display_selection = records.filter((record) =>
-        record.title.toLowerCase().includes(search_input.value.toLowerCase()),
+function search(event, value) {
+    event.stopPropagation();
+    displaySelection = records.filter((record) =>
+        record.title.toLowerCase().includes(value.toLowerCase()),
     );
     showCards();
+}
+
+function changeSortMethod(event, value) {
+    event.stopPropagation();
+    if (value === "Year Ascending") {
+        displaySelection = displaySelection.sort(
+            (recordA, recordB) => recordA.year - recordB.year,
+        );
+    } else if (value === "Year Descending") {
+        displaySelection = displaySelection.sort(
+            (recordA, recordB) => recordB.year - recordA.year,
+        );
+    }
+    showCards();
+    console.log("Changed to", value);
 }
 
 function quoteAlert() {
