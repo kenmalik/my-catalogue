@@ -1,4 +1,4 @@
-const records = [
+let records = [
     {
         title: "Things Ain't What They Used To Be",
         year: 1958,
