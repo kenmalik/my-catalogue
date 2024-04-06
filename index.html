@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <title>LA TV Shows | Home</title>
-  <meta name="description" content="A Catalog of Shows Set in Los Angeles">
+  <title>The Coltrane Catalog | Home</title>
+  <meta name="description" content="A catalog of John Coltrane releases and appearances from 1958-1965">
   <link rel="stylesheet" href="style.css" />
   <script type="text/javascript" src="assets/album-data.js"></script>
   <script type="text/javascript" src="scripts.js"></script>
@@ -11,11 +11,49 @@
 
 <body>
   <header class="main-header">
-    <h1 class="title">John Coltrane</h1>
+    <h1 class="title">The Coltrane Catalog</h1>
   </header>
 
   <main>
-    <div id="search-bar">Search</div>
+    <div id="hero">
+      <div id="albums">
+        <img
+          src="https://i.discogs.com/IbCKxU_azC_wvytUlvB7YNRcQ_PQPUh3B0cXmA0GCwo/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3NTU2/MDgtMTY2NTM2OTc3/Ny05NTY5LmpwZWc.jpeg"
+          class="album one">
+        <img
+          src="https://i.discogs.com/AkhmAs38qi5K1seETPRX4zrxTGFgXBYvDIduDUmiwPU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3Nzcw/NDUtMTMzMDU2MDA0/OC5qcGVn.jpeg"
+          class="album two">
+        <img
+          src="https://i.discogs.com/yOEwcX1j78hYUnVFOp5OtLisLkIPAStLrx9LwiF0bs4/rs:fit/g:sm/q:90/h:283/w:280/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxNTUy/NDQtMTI4MjI4NjU5/NS5qcGVn.jpeg"
+          class="album three">
+        <img
+          src="https://i.discogs.com/fGpBfJZOBOXcombzBDMfneERKusKwmEO03qCaTid4sY/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY4OTA3/NDctMTQyODg4ODc4/NC00ODEzLmpwZWc.jpeg"
+          class="album four">
+      </div>
+      <div class="color-overlay"></div>
+      <div class="text-overlay">
+        <h2>John Coltrane</h2>
+        <p>His features and releases from 1958-1965</p>
+      </div>
+    </div>
+    <div id="nav-bar">
+      <ul class="eras">
+        <li><button>With Miles Davis</button></li>
+        <li><button>Atlantic Records</button></li>
+        <li><button>Impulse! Records</button></li>
+        <li><button>The Classic Quartet</button></li>
+      </ul>
+      <form class="search-bar">
+        <label for="search">Search</label>
+        <input type="search" name="search" id="search">
+
+        <label for="sort-select">Sort</label>
+        <select name="sort-select" id="sort-select">
+          <option>Year Ascending</option>
+          <option>Year Descending</option>
+        </select>
+      </form>
+    </div>
     <div id="card-container">
 
     </div>
@@ -23,8 +61,8 @@
 
   <div class="card" style="display: none;">
     <div class="card-content">
-      <h2>TV Show Title</h2>
       <div class="img-placeholder">Image Placeholder</div>
+      <h2>TV Show Title</h2>
       <!-- <img src="" alt="TV Show Poster"> -->
       <ul>
         <li>Bullet Point 1</li>
@@ -33,6 +71,7 @@
       </ul>
     </div>
   </div>
+
   <div class="footer">
     <button onclick="quoteAlert();">
       Get A Quote!

@@ -5,18 +5,108 @@ body {
   background-color: #f5f5f5;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  z-index: 50;
+}
+
 .main-header {
-  background-color: #262626;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  background-color: #171717;
+  padding: 1.2rem 4rem;
+  top: 0;
+  z-index: 100;
 }
 
 .title {
-  text-align: center;
   margin: 0;
-  font-size: 6em;
+  font-size: 2em;
   font-family: "Helvetica";
-  font-weight: bold;
   color: #f5f5f5;
+  font-weight: lighter;
+}
+
+#nav-bar .search-bar {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+#nav-bar ul {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3rem 0 3rem 0;
+}
+
+#nav-bar button {
+  font-size: 1.4em;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-decoration: underline;
+}
+
+#hero {
+  height: 100vh;
+  background-color: #525252;
+}
+
+#hero .color-overlay {
+  position:absolute;
+  background-color: rgba(17, 24, 39, .9);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+#hero .text-overlay {
+  color: #f5f5f5;
+  font-size: 1.6em;
+  position: absolute;
+  text-align: right;
+  right: 8em;
+  bottom: 4em;
+  z-index: 3;
+}
+
+#hero #albums {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+#hero .album {
+  aspect-ratio: 1 / 1;
+  width: 650px;
+  background-color: white;
+}
+
+#hero .one {
+  position: absolute;
+  left: 2em;
+  top: -4em;
+}
+#hero .two {
+  position: absolute;
+  left: 12em;
+  top: 40em;
+}
+#hero .three {
+  position: absolute;
+  left: 80%;
+  top: 10em;
+}
+#hero .four {
+  position: absolute;
+  left: 48%;
+  top: 20em;
 }
 
 #card-container {
@@ -24,7 +114,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin: 20px;
-  gap: 80px 40px;
+  gap: 100px 50px;
 }
 
 .card {
@@ -49,7 +139,6 @@ body {
   margin-bottom: 1em;
   text-align: center;
   font-size: 20px;
-  height: 2em;
 }
 
 .card-content ul {
@@ -64,6 +153,7 @@ body {
   width: 100%;
   color: white;
   background-color: gray;
+  margin-bottom: 1em;
 }
 
 .card img {
@@ -78,7 +168,7 @@ body {
   padding: 10px;
 }
 
-button {
+.footer button {
   text-align: center;
   background-color: #666;
   border: none;
@@ -89,5 +179,4 @@ button {
   color: white;
   font-size: 22px;
   cursor: pointer;
-  margin: 5px;
 }
