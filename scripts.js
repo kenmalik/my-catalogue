@@ -39,14 +39,14 @@ function showCards() {
         const favoriteButton = nextCard.querySelector("button");
         favoriteButton.addEventListener("click", (event) => {
             event.stopPropagation();
-            handleFavorite(Number(nextCard.id));
+            handleFavorite(favoriteButton, Number(nextCard.id));
         });
 
         cardContainer.appendChild(nextCard); // Add new card to the container
     }
 }
 
-function handleFavorite(id) {
+function handleFavorite(button, id) {
     const favorite = records.find((record) => record.id === id);
     favorite.favorited = !favorite.favorited;
     console.log(
@@ -54,6 +54,10 @@ function handleFavorite(id) {
         "is",
         favorite.favorited ? "favorited" : "not favorited",
     );
+
+    button.textContent = favorite.favorited ? "Unfavorite" : "Favorite";
+    button.style.backgroundColor = favorite.favorited ? "#15803d" : "";
+    button.style.color = favorite.favorited ? "white" : "";
 }
 
 function editCardContent(card, newTitle, newYear, newImageURL) {
