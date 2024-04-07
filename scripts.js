@@ -26,6 +26,7 @@
 console.log(records);
 
 let displaySelection = records;
+let sortMethod = "None";
 
 function showCards() {
     const cardContainer = document.getElementById("card-container");
@@ -77,6 +78,15 @@ function loadSort() {
     );
 }
 
+function chooseEra(lowYear, highYear) {
+    console.log("Era chosen:", lowYear, "-", highYear);
+    displaySelection = records.filter(
+        (record) => record.year >= lowYear && record.year <= highYear,
+    );
+    sortRecords();
+    showCards();
+}
+
 document.addEventListener("DOMContentLoaded", showCards);
 document.addEventListener("DOMContentLoaded", loadSearchBar);
 
@@ -88,19 +98,24 @@ function search(event, value) {
     showCards();
 }
 
-function changeSortMethod(event, value) {
+function changeSortMethod(event, sortType) {
     event.stopPropagation();
-    if (value === "Year Ascending") {
+    sortMethod = sortType;
+    console.log("Changed to", sortType);
+    sortRecords();
+    showCards();
+}
+
+function sortRecords() {
+    if (sortMethod === "Year Ascending") {
         displaySelection = displaySelection.sort(
             (recordA, recordB) => recordA.year - recordB.year,
         );
-    } else if (value === "Year Descending") {
+    } else if (sortMethod === "Year Descending") {
         displaySelection = displaySelection.sort(
             (recordA, recordB) => recordB.year - recordA.year,
         );
     }
-    showCards();
-    console.log("Changed to", value);
 }
 
 function quoteAlert() {

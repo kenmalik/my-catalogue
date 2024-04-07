@@ -37,10 +37,20 @@ main {
   margin-bottom: 2em;
 }
 
+#nav-bar .eras {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4rem;
+  font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin: 3rem 0;
+}
+
 #nav-bar ul {
   display: flex;
   justify-content: space-evenly;
-  margin: 3rem 0 3rem 0;
+  gap: 2.5rem;
 }
 
 #nav-bar button {
@@ -49,6 +59,15 @@ main {
   border: none;
   background: none;
   text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+#nav-bar button:hover {
+  color: #15803d;
+}
+
+#nav-bar button:active {
+  color: #4ade80;
 }
 
 #hero {

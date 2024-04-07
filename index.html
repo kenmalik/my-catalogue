@@ -37,12 +37,16 @@
       </div>
     </div>
     <div id="nav-bar">
-      <ul class="eras">
-        <li><button>With Miles Davis</button></li>
-        <li><button>Atlantic Records</button></li>
-        <li><button>Impulse! Records</button></li>
-        <li><button>The Classic Quartet</button></li>
-      </ul>
+      <div class="eras">
+        <h2>Select Era:</h2>
+        <ul>
+          <li><button onclick="chooseEra(1958, 1959)">Miles Davis</button></li>
+          <li><button onclick="chooseEra(1959, 1961)">Atlantic Records</button></li>
+          <li><button onclick="chooseEra(1961, 1962)">Impulse! Records</button></li>
+          <li><button onclick="chooseEra(1962, 1965)">Classic Quartet</button></li>
+          <li><button onclick="chooseEra(1958, 1965)">All</button></li>
+        </ul>
+      </div>
       <form class="search-bar">
         <label for="search">Search</label>
         <input type="search" name="search" id="search" onsubmit="search()">
