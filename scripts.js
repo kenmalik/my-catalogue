@@ -23,6 +23,7 @@
  *
  */
 
+const imageDir = "./assets/images/";
 let collection = records;
 let displayed = collection;
 
@@ -34,7 +35,12 @@ function showCards() {
     for (record of displayed) {
         const nextCard = templateCard.cloneNode(true); // Copy the template card
         nextCard.id = record.id;
-        editCardContent(nextCard, record.title, record.year, record.image); // Edit title and image
+        editCardContent(
+            nextCard,
+            record.title,
+            record.year,
+            imageDir + record.image_src,
+        ); // Edit title and image
 
         const favoriteButton = nextCard.querySelector("button");
         setFavoriteButtonStyles(favoriteButton, record.favorited);
@@ -75,9 +81,9 @@ function editCardContent(card, newTitle, newYear, newImageURL) {
     cardYear.textContent =
         newYear > 0 ? "(" + newYear + ")" : "Year not provided";
 
-    // const cardImage = card.querySelector("img");
-    // cardImage.src = newImageURL;
-    // cardImage.alt = newTitle + " Poster";
+    const cardImage = card.querySelector("img");
+    cardImage.src = newImageURL;
+    cardImage.alt = newTitle + " Poster";
 
     // console.log("new card:", newTitle, "- html: ", card);
 }
