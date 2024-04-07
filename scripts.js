@@ -104,6 +104,10 @@ function updateDisplay() {
     applyFilter();
     applySearch();
     applySort();
+
+    const resultCounter = document.querySelector("#nav-bar p");
+    resultCounter.textContent = displayed.length + " results";
+
     showCards();
 }
 
@@ -154,7 +158,7 @@ function loadSearchBar() {
         .addEventListener("change", updateDisplay);
 }
 
-document.addEventListener("DOMContentLoaded", showCards);
+document.addEventListener("DOMContentLoaded", updateDisplay);
 document.addEventListener("DOMContentLoaded", loadSearchBar);
 
 function quoteAlert() {

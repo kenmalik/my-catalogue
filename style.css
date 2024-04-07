@@ -32,8 +32,11 @@ main {
   font-weight: lighter;
 }
 
-#nav-bar .search-bar {
+#nav-bar {
   text-align: center;
+}
+
+#nav-bar .search-bar {
   margin-bottom: 2em;
 }
 
