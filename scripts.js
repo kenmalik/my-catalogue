@@ -23,21 +23,37 @@
  *
  */
 
-console.log(records);
-
-let displaySelection = records;
-let sortMethod = "None";
+let collection = records;
+let displayed = collection;
 
 function showCards() {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
     const templateCard = document.querySelector(".card");
 
-    for (record of displaySelection) {
+    for (record of displayed) {
         const nextCard = templateCard.cloneNode(true); // Copy the template card
+        nextCard.id = record.id;
         editCardContent(nextCard, record.title, record.year, record.image); // Edit title and image
+
+        const favoriteButton = nextCard.querySelector("button");
+        favoriteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            handleFavorite(Number(nextCard.id));
+        });
+
         cardContainer.appendChild(nextCard); // Add new card to the container
     }
+}
+
+function handleFavorite(id) {
+    const favorite = records.find((record) => record.id === id);
+    favorite.favorited = !favorite.favorited;
+    console.log(
+        favorite.title,
+        "is",
+        favorite.favorited ? "favorited" : "not favorited",
+    );
 }
 
 function editCardContent(card, newTitle, newYear, newImageURL) {
@@ -57,66 +73,66 @@ function editCardContent(card, newTitle, newYear, newImageURL) {
     // console.log("new card:", newTitle, "- html: ", card);
 }
 
-function loadSearchBar() {
-    loadSearch();
-    loadSort();
-    const searchBar = document.querySelector(".search-bar");
-    searchBar.addEventListener("submit", (event) => event.preventDefault());
-}
-
-function loadSearch() {
-    const searchInput = document.getElementById("search");
-    searchInput.addEventListener("input", (event) =>
-        search(event, searchInput.value),
-    );
-}
-
-function loadSort() {
-    const sortSelect = document.getElementById("sort-select");
-    sortSelect.addEventListener("change", (event) =>
-        changeSortMethod(event, sortSelect.value),
-    );
+function changeDisplayed() {
+    displayed = collection;
+    applyFilter();
+    applySearch();
+    applySort();
+    showCards();
 }
 
 function chooseEra(lowYear, highYear) {
     console.log("Era chosen:", lowYear, "-", highYear);
-    displaySelection = records.filter(
+    collection = records.filter(
         (record) => record.year >= lowYear && record.year <= highYear,
     );
-    sortRecords();
-    showCards();
+    changeDisplayed();
 }
 
-document.addEventListener("DOMContentLoaded", showCards);
-document.addEventListener("DOMContentLoaded", loadSearchBar);
+function applyFilter() {
+    const filterMethod = document.getElementById("filter-select").value;
+    if (filterMethod === "Favorites") {
+        displayed = displayed.filter((record) => record.favorited === true);
+    }
+}
 
-function search(event, value) {
-    event.stopPropagation();
-    displaySelection = records.filter((record) =>
-        record.title.toLowerCase().includes(value.toLowerCase()),
+function applySearch() {
+    const searchInput = document.getElementById("search");
+    displayed = displayed.filter((record) =>
+        record.title.toLowerCase().includes(searchInput.value.toLowerCase()),
     );
-    showCards();
 }
 
-function changeSortMethod(event, sortType) {
-    event.stopPropagation();
-    sortMethod = sortType;
-    console.log("Changed to", sortType);
-    sortRecords();
-    showCards();
-}
-
-function sortRecords() {
+function applySort() {
+    const sortMethod = document.getElementById("sort-select").value;
     if (sortMethod === "Year Ascending") {
-        displaySelection = displaySelection.sort(
+        displayed = displayed.sort(
             (recordA, recordB) => recordA.year - recordB.year,
         );
     } else if (sortMethod === "Year Descending") {
-        displaySelection = displaySelection.sort(
+        displayed = displayed.sort(
             (recordA, recordB) => recordB.year - recordA.year,
         );
     }
 }
+
+function loadSearchBar() {
+    document
+        .querySelector(".search-bar")
+        .addEventListener("submit", (event) => event.preventDefault());
+    document
+        .getElementById("search")
+        .addEventListener("input", changeDisplayed);
+    document
+        .getElementById("sort-select")
+        .addEventListener("change", changeDisplayed);
+    document
+        .getElementById("filter-select")
+        .addEventListener("change", changeDisplayed);
+}
+
+document.addEventListener("DOMContentLoaded", showCards);
+document.addEventListener("DOMContentLoaded", loadSearchBar);
 
 function quoteAlert() {
     console.log("Button Clicked!");
