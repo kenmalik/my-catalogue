@@ -106,7 +106,8 @@ function updateDisplay() {
     applySort();
 
     const resultCounter = document.querySelector("#nav-bar p");
-    resultCounter.textContent = displayed.length + " results";
+    resultCounter.textContent =
+        displayed.length + (displayed.length !== 1 ? " results" : " result");
 
     showCards();
 }

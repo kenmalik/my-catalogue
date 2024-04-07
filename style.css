@@ -33,11 +33,31 @@ main {
 }
 
 #nav-bar {
+  font-family: Helvetica, Arial, sans-serif;
   text-align: center;
+  margin-bottom: 3rem;
 }
 
 #nav-bar .search-bar {
-  margin-bottom: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar input,
+.search-bar select {
+  border: none;
+  padding: .5em 1em;
+  background-color: #e5e5e5;
+  font-size: 1em;
+}
+
+.search-bar label {
+  display: flex;
+  gap: .7em;
+  align-items: baseline;
+  font-weight: bold;
 }
 
 #nav-bar .eras {
@@ -45,9 +65,8 @@ main {
   align-items: baseline;
   justify-content: center;
   gap: 4rem;
-  font-family: Helvetica, Arial, sans-serif;
   text-align: center;
-  margin: 3rem 0;
+  margin: 2rem 0 1rem 0;
 }
 
 #nav-bar ul {
@@ -79,7 +98,7 @@ main {
 }
 
 #hero .color-overlay {
-  position:absolute;
+  position: absolute;
   background-color: rgba(17, 24, 39, .9);
   width: 100%;
   height: 100%;
@@ -115,16 +134,19 @@ main {
   left: 2em;
   top: -4em;
 }
+
 #hero .two {
   position: absolute;
   left: 12em;
   top: 40em;
 }
+
 #hero .three {
   position: absolute;
   left: 80%;
   top: 10em;
 }
+
 #hero .four {
   position: absolute;
   left: 48%;
@@ -174,6 +196,7 @@ main {
 }
 
 .card-content button {
+  background-color: #e5e5e5;
   margin-top: auto;
   width: 100%;
   padding: .5em;
