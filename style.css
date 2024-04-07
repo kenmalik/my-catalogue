@@ -187,7 +187,11 @@ main {
   color: white;
 }
 
-.card-content button {
+.card-content .change-content-buttons {
+  width: 100%;
+  margin-top: .5em;
+  display: flex;
+  gap: .5em;
 }
 
 .card-content ul {
