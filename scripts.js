@@ -37,6 +37,7 @@ function showCards() {
         editCardContent(nextCard, record.title, record.year, record.image); // Edit title and image
 
         const favoriteButton = nextCard.querySelector("button");
+        setFavoriteButtonStyles(favoriteButton, record.favorited);
         favoriteButton.addEventListener("click", (event) => {
             event.stopPropagation();
             handleFavorite(favoriteButton, Number(nextCard.id));
@@ -47,17 +48,21 @@ function showCards() {
 }
 
 function handleFavorite(button, id) {
-    const favorite = records.find((record) => record.id === id);
-    favorite.favorited = !favorite.favorited;
+    const object = records.find((record) => record.id === id);
+    object.favorited = !object.favorited;
     console.log(
-        favorite.title,
+        object.title,
         "is",
-        favorite.favorited ? "favorited" : "not favorited",
+        object.favorited ? "favorited" : "not favorited",
     );
+    setFavoriteButtonStyles(button, object.favorited);
+    changeDisplayed();
+}
 
-    button.textContent = favorite.favorited ? "Unfavorite" : "Favorite";
-    button.style.backgroundColor = favorite.favorited ? "#15803d" : "";
-    button.style.color = favorite.favorited ? "white" : "";
+function setFavoriteButtonStyles(button, isFavorited) {
+    button.textContent = isFavorited ? "Unfavorite" : "Favorite";
+    button.style.backgroundColor = isFavorited ? "#15803d" : "";
+    button.style.color = isFavorited ? "white" : "";
 }
 
 function editCardContent(card, newTitle, newYear, newImageURL) {
