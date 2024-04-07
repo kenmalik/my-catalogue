@@ -42,11 +42,23 @@ function showCards() {
             imageDir + record.image_src,
         ); // Edit title and image
 
-        const favoriteButton = nextCard.querySelector("button");
+        const favoriteButton = nextCard.querySelectorAll("button")[0];
         setFavoriteButtonStyles(favoriteButton, record.favorited);
         favoriteButton.addEventListener("click", (event) => {
             event.stopPropagation();
             handleFavorite(favoriteButton, Number(nextCard.id));
+        });
+
+        const editButton = nextCard.querySelectorAll("button")[1];
+        editButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            console.log("Edit clicked");
+        });
+
+        const deleteButton = nextCard.querySelectorAll("button")[2];
+        deleteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            handleDelete(Number(nextCard.id));
         });
 
         cardContainer.appendChild(nextCard); // Add new card to the container
@@ -56,13 +68,14 @@ function showCards() {
 function handleFavorite(button, id) {
     const object = records.find((record) => record.id === id);
     object.favorited = !object.favorited;
-    console.log(
-        object.title,
-        "is",
-        object.favorited ? "favorited" : "not favorited",
-    );
     setFavoriteButtonStyles(button, object.favorited);
-    changeDisplayed();
+    updateDisplay();
+}
+
+function handleDelete(id) {
+    records = records.filter((record) => record.id !== id);
+    collection = collection.filter((record) => record.id !== id);
+    updateDisplay();
 }
 
 function setFavoriteButtonStyles(button, isFavorited) {
@@ -83,12 +96,10 @@ function editCardContent(card, newTitle, newYear, newImageURL) {
 
     const cardImage = card.querySelector("img");
     cardImage.src = newImageURL;
-    cardImage.alt = newTitle + " Poster";
-
-    // console.log("new card:", newTitle, "- html: ", card);
+    cardImage.alt = newTitle + " album cover";
 }
 
-function changeDisplayed() {
+function updateDisplay() {
     displayed = collection;
     applyFilter();
     applySearch();
@@ -97,11 +108,10 @@ function changeDisplayed() {
 }
 
 function chooseEra(lowYear, highYear) {
-    console.log("Era chosen:", lowYear, "-", highYear);
     collection = records.filter(
         (record) => record.year >= lowYear && record.year <= highYear,
     );
-    changeDisplayed();
+    updateDisplay();
 }
 
 function applyFilter() {
@@ -135,15 +145,13 @@ function loadSearchBar() {
     document
         .querySelector(".search-bar")
         .addEventListener("submit", (event) => event.preventDefault());
-    document
-        .getElementById("search")
-        .addEventListener("input", changeDisplayed);
+    document.getElementById("search").addEventListener("input", updateDisplay);
     document
         .getElementById("sort-select")
-        .addEventListener("change", changeDisplayed);
+        .addEventListener("change", updateDisplay);
     document
         .getElementById("filter-select")
-        .addEventListener("change", changeDisplayed);
+        .addEventListener("change", updateDisplay);
 }
 
 document.addEventListener("DOMContentLoaded", showCards);
