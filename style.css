@@ -169,6 +169,10 @@ main {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.card:hover {
+  transform: scale(1.02);
+}
+
 .card-content {
   box-sizing: border-box;
   height: 100%;
@@ -196,22 +200,43 @@ main {
 }
 
 .card-content button {
-  background-color: #e5e5e5;
   margin-top: auto;
+  background-color: #e5e5e5;
   width: 100%;
   padding: .5em;
   border: none;
 }
 
-.card-content button:hover {
+.card-content .favorite-btn:hover {
   background-color: #15803d;
   color: white;
 }
 
-.card-content button:active {
+.card-content .favorite-btn:active {
   background-color: #4ade80;
   color: white;
 }
+
+.card-content .delete-btn:hover {
+  background-color: #991b1b;
+  color: white;
+}
+
+.card-content .delete-btn:active {
+  background-color: #dc2626;
+  color: white;
+}
+
+.card-content .edit-btn:hover {
+  background-color: #075985;
+  color: white;
+}
+
+.card-content .edit-btn:active {
+  background-color: #0284c7;
+  color: white;
+}
+
 
 .card-content .change-content-buttons {
   width: 100%;
