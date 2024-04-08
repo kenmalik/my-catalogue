@@ -173,3 +173,34 @@ function removeLastCard() {
     records.pop(); // Remove last item in titles array
     showCards(); // Call showCards again to refresh
 }
+
+function addColorOverlay(card) {
+    let overlay = document.createElement("div");
+    overlay.id = card.id + "-overlay";
+    overlay.style.position = "absolute";
+    overlay.style.left = "0";
+    overlay.style.top = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(7, 89, 133, 0.4)";
+    overlay.style.color = "white";
+    overlay.style.fontSize = "1.5em";
+    overlay.style.fontWeight = "bolder";
+    overlay.style.paddingTop = "5em";
+    overlay.style.textAlign = "center";
+    overlay.style.borderRadius = "5px";
+    overlay.style.pointerEvents = "none";
+    overlay.style.boxSizing = "border-box";
+    overlay.textContent = "Click to flip";
+    card.appendChild(overlay);
+}
+
+function removeColorOverlay(card) {
+    const overlayId = card.id + "-overlay";
+    const overlay = document.getElementById(overlayId);
+    overlay.remove();
+}
+
+function flipCard(card) {
+    console.log("Flipping", card.id);
+}

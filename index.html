@@ -76,7 +76,9 @@
 
   <div class="card" style="display: none;">
     <div class="card-content">
-      <img src="" alt="Album cover">
+      <img src="" alt="Album cover" onmouseover="addColorOverlay(this.parentElement.parentElement)"
+        onmouseout="removeColorOverlay(this.parentElement.parentElement)"
+        onclick="flipCard(this.parentElement.parentElement)">
       <h2>TV Show Title</h2>
       <h3>2024</h3>
       <!-- <ul> -->
