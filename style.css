@@ -195,6 +195,12 @@ main {
   box-sizing: border-box;
 }
 
+.card-content .back .info {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  margin-bottom: 2em;
+}
+
 .card-content .back h2 {
   min-height: 2.5em;
   padding-bottom: .5em;
@@ -208,8 +214,16 @@ main {
   margin-bottom: 0;
 }
 
+.card-content .back p {
+  margin-top: 0;
+}
+
 .card-content .back ul {
   margin-top: 0;
+}
+
+.card-content .back a {
+  color: #0284c7;
 }
 
 .card img {

@@ -100,7 +100,7 @@ let records = [
     {
         id: 1747232,
         title: "Speak Low",
-        year: 0,
+        year: 1958,
         artists: ["John Coltrane", "Sonny Clark"],
         label: null,
         tracklist: ["Speak Low", "Softly As In A Morning Sunrise"],

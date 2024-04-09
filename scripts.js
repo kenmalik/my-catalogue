@@ -33,30 +33,85 @@ function showCards() {
     const templateCard = document.querySelector(".card");
 
     for (record of displayed) {
-        const nextCard = templateCard.cloneNode(true); // Copy the template card
+        const nextCard = templateCard.cloneNode(true);
         nextCard.id = record.id;
         editCardContent(
             nextCard,
             record.title,
             record.year,
             imageDir + record.image_src,
-        ); // Edit title and image
+        );
 
         nextCard.querySelector(".front").id = record.id + "-front";
 
         nextCard.querySelector(".back").id = record.id + "-back";
-        nextCard.querySelector(".back h2").innerText = record.title;
+        nextCard.querySelector(".back h2").innerText =
+            record.title + " (" + record.year + ")";
 
-        for (person of record.artists) {
-            const personnel = nextCard.querySelector(".back ul");
-            const artist = document.createElement("li");
-            artist.appendChild(document.createTextNode(person));
-            personnel.appendChild(artist);
+        const info = nextCard.querySelector(".back .info");
+
+        if (record.label) {
+            const label = document.createElement("p");
+            const header = document.createElement("b");
+            header.appendChild(document.createTextNode("Label: "));
+            label.appendChild(header);
+            label.appendChild(document.createTextNode(record.label));
+            info.appendChild(label);
+        }
+
+        if (record.artists) {
+            const header = document.createElement("h3");
+            header.appendChild(document.createTextNode("Personnel:"));
+            info.appendChild(header);
+
+            const personnel = document.createElement("ul");
+            for (person of record.artists) {
+                const personItem = document.createElement("li");
+                personItem.appendChild(document.createTextNode(person));
+                personnel.appendChild(personItem);
+            }
+            info.appendChild(personnel);
+        }
+
+        if (record.tracklist) {
+            const header = document.createElement("h3");
+            header.appendChild(document.createTextNode("Tracklist:"));
+            info.appendChild(header);
+
+            const tracklist = document.createElement("ul");
+            for (track of record.tracklist) {
+                const trackItem = document.createElement("li");
+                trackItem.appendChild(document.createTextNode(track));
+                tracklist.appendChild(trackItem);
+            }
+            info.appendChild(tracklist);
+        }
+
+        if (record.info) {
+            const header = document.createElement("h3");
+            header.appendChild(document.createTextNode("Additional Info:"));
+            info.appendChild(header);
+            const infoItem = document.createElement("p");
+            infoItem.innerText = record.info;
+            info.appendChild(infoItem);
+        }
+
+        if (record.video_url) {
+            const line = document.createElement("p");
+            line.style.textAlign = "center";
+            line.style.marginTop = "4em";
+            const link = document.createElement("a");
+            link.innerText = "Video";
+            link.href = record.video_url;
+            link.rel = "noopener noreferrer";
+            link.target = "_blank";
+            line.appendChild(link);
+            info.appendChild(line);
         }
 
         nextCard.querySelector(".front").style.display = "flex";
 
-        cardContainer.appendChild(nextCard); // Add new card to the container
+        cardContainer.appendChild(nextCard);
         loadFrontButtons(nextCard.id);
     }
 }
@@ -110,8 +165,7 @@ function editCardContent(card, newTitle, newYear, newImageURL) {
     cardHeader.textContent = newTitle;
 
     const cardYear = card.querySelector("h3");
-    cardYear.textContent =
-        newYear > 0 ? "(" + newYear + ")" : "Year not provided";
+    cardYear.textContent = "(" + newYear + ")";
 
     const cardImage = card.querySelector("img");
     cardImage.src = newImageURL;
