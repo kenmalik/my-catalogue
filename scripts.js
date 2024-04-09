@@ -295,7 +295,7 @@ function removeColorOverlay(card) {
 }
 
 function flipCard(card) {
-    if (document.getElementById(card.id + "-front").style.display == "flex") {
+    if (document.getElementById(card.id + "-front").style.display === "flex") {
         document.getElementById(card.id + "-front").style.display = "none";
         document.getElementById(card.id + "-back").style.display = "flex";
     } else {
@@ -304,4 +304,18 @@ function flipCard(card) {
     }
 
     removeColorOverlay(card);
+}
+
+function scrollToRandom() {
+    const randomRecordId =
+        displayed[Math.floor(Math.random() * displayed.length)].id;
+    const record = document.getElementById(randomRecordId);
+    record.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    if (
+        document.getElementById(randomRecordId + "-front").style.display ===
+        "flex"
+    ) {
+        flipCard(record);
+    }
 }
