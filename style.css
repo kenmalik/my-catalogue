@@ -162,7 +162,8 @@ main {
 }
 
 .card {
-  width: 300px;
+  aspect-ratio: 1 / 1.6;
+  width: 350px;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -182,6 +183,11 @@ main {
   padding: 20px;
   font-family: Helvetica, Arial, sans-serif;
   color: #404040;
+}
+
+.card-content .card-side {
+  width: 100%;
+  height: 100%;
 }
 
 .card img {
@@ -206,7 +212,6 @@ main {
 }
 
 .card-content button {
-  margin-top: auto;
   background-color: #e5e5e5;
   width: 100%;
   padding: .5em;
@@ -245,9 +250,10 @@ main {
 
 
 .card-content .change-content-buttons {
+  margin-top: auto;
   width: 100%;
-  margin-top: .5em;
   display: flex;
+  flex-direction: column;
   gap: .5em;
 }
 
