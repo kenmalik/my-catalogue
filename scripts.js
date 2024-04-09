@@ -47,6 +47,13 @@ function showCards() {
         nextCard.querySelector(".back").id = record.id + "-back";
         nextCard.querySelector(".back h2").innerText = record.title;
 
+        for (person of record.artists) {
+            const personnel = nextCard.querySelector(".back ul");
+            const artist = document.createElement("li");
+            artist.appendChild(document.createTextNode(person));
+            personnel.appendChild(artist);
+        }
+
         nextCard.querySelector(".front").style.display = "flex";
 
         cardContainer.appendChild(nextCard); // Add new card to the container
