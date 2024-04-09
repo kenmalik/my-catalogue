@@ -26,8 +26,9 @@
 const imageDir = "./assets/images/";
 let collection = records;
 let displayed = collection;
+let selectedEra = "All";
 
-function showCards() {
+function renderCardDisplay() {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
     const templateCard = document.querySelector(".card");
@@ -114,6 +115,15 @@ function showCards() {
         cardContainer.appendChild(nextCard);
         loadFrontButtons(nextCard.id);
     }
+
+    if (displayed.length == 0) {
+        const noResultsMessage = document.createElement("h3");
+        noResultsMessage.innerText =
+            "No results, try changing your search term and filters";
+        noResultsMessage.id = "no-results";
+        noResultsMessage.style.marginTop = "10%";
+        cardContainer.appendChild(noResultsMessage);
+    }
 }
 
 function loadFrontButtons(cardId) {
@@ -196,27 +206,21 @@ function updateDisplay() {
     applySearch();
     applySort();
 
+    renderCardDisplay();
+
     const resultCounter = document.querySelector("#nav-bar p");
     resultCounter.textContent =
         displayed.length + (displayed.length !== 1 ? " results" : " result");
-
-    showCards();
-
-    const cardContainer = document.querySelector("#card-container");
-    if (displayed.length == 0) {
-        const noResultsMessage = document.createElement("h3");
-        noResultsMessage.innerText =
-            "No results, try changing your search term and filters";
-        noResultsMessage.id = "no-results";
-        noResultsMessage.style.marginTop = "10%";
-        cardContainer.appendChild(noResultsMessage);
-    }
+    resultCounter.textContent += ' in "' + selectedEra + '"';
 }
 
-function chooseEra(lowYear, highYear) {
+function chooseEra(era) {
     collection = records.filter(
-        (record) => record.year >= lowYear && record.year <= highYear,
+        (record) =>
+            record.year >= ERAS.get(era).start &&
+            record.year <= ERAS.get(era).end,
     );
+    selectedEra = era;
     updateDisplay();
 }
 
@@ -272,7 +276,7 @@ function quoteAlert() {
 
 function removeLastCard() {
     records.pop(); // Remove last item in titles array
-    showCards(); // Call showCards again to refresh
+    renderCardDisplay(); // Call renderCardDisplay again to refresh
 }
 
 function addColorOverlay(card) {

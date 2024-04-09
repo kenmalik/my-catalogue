@@ -1,3 +1,10 @@
+const ERAS = new Map();
+ERAS.set("Miles Davis", { start: 1958, end: 1959 });
+ERAS.set("Atlantic Records", { start: 1959, end: 1961 });
+ERAS.set("Impulse! Records", { start: 1961, end: 1962 });
+ERAS.set("Classic Quartet", { start: 1962, end: 1965 });
+ERAS.set("All", { start: 1958, end: 1965 });
+
 let records = [
     {
         id: 4537774,
@@ -187,17 +194,6 @@ let records = [
         info: null,
     },
     {
-        id: 62785,
-        title: "Informal Jazz",
-        year: 1956,
-        artists: ["Elmo Hope Sextet", "John Coltrane"],
-        label: null,
-        tracklist: ["Weejah", "Polka Dots And Moonbeams", "On It", "Avalon"],
-        image_src: "62785.jpeg",
-        video_url: "https://www.youtube.com/watch?v=ufkPnK4oWc4",
-        info: null,
-    },
-    {
         id: 2954797,
         title: "Traneing In",
         year: 1958,
@@ -311,24 +307,6 @@ let records = [
         tracklist: ["Naima", "Cousin Mary"],
         image_src: "3156897.jpeg",
         video_url: "https://www.youtube.com/watch?v=lQCdF3UtGqQ",
-        info: null,
-    },
-    {
-        id: 279080,
-        title: "Chambers' Music: A Jazz Delegation From The East",
-        year: 1956,
-        artists: ["John Coltrane", "Paul Chambers (3)"],
-        label: null,
-        tracklist: [
-            "Dexterity",
-            "Stablemates",
-            "Easy To Love",
-            "Visitation",
-            "John Paul Jones",
-            "Eastbound",
-        ],
-        image_src: "279080.jpeg",
-        video_url: "https://www.youtube.com/watch?v=sjonp1swRgg",
         info: null,
     },
     {
