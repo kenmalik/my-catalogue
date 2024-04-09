@@ -42,46 +42,39 @@ function showCards() {
             imageDir + record.image_src,
         ); // Edit title and image
 
-        populateCard(nextCard);
+        populateCard(nextCard, record);
 
-        cardContainer.appendChild(nextCard); // Add new card to the container
+        nextCard.querySelector(".back").id = record.id + "-back";
+        nextCard.querySelector(".back h2").innerText = record.title;
+
+        nextCard.querySelector(".card-content").innerHTML =
+            nextCard.querySelector(".front").innerHTML;
+
+        const favoriteButton = nextCard.querySelectorAll("button")[0];
+        setFavoriteButtonStyles(favoriteButton, record.favorited);
+        favoriteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            handleFavorite(favoriteButton, Number(nextCard.id));
+        });
+
+        const editButton = nextCard.querySelectorAll("button")[1];
+        editButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            console.log("Edit clicked");
+        });
+
+        const deleteButton = nextCard.querySelectorAll("button")[2];
+        deleteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            handleDelete(Number(nextCard.id));
+        });
+
+        cardContainer.appendChild(nextCard);
     }
 }
 
-function populateCard(card) {
-    populateFront(card);
-    populateBack(card);
-
-    card.querySelector(".card-content").innerHTML =
-        card.querySelector(".front").innerHTML;
-}
-
-function populateFront(card) {
+function populateCard(card, record) {
     card.querySelector(".front").id = record.id + "-front";
-
-    const favoriteButton = card.querySelectorAll("button")[0];
-    setFavoriteButtonStyles(favoriteButton, record.favorited);
-    favoriteButton.addEventListener("click", (event) => {
-        event.stopPropagation();
-        handleFavorite(favoriteButton, Number(card.id));
-    });
-
-    const editButton = card.querySelectorAll("button")[1];
-    editButton.addEventListener("click", (event) => {
-        event.stopPropagation();
-        console.log("Edit clicked");
-    });
-
-    const deleteButton = card.querySelectorAll("button")[2];
-    deleteButton.addEventListener("click", (event) => {
-        event.stopPropagation();
-        handleDelete(Number(card.id));
-    });
-}
-
-function populateBack(card) {
-    card.querySelector(".back").id = record.id + "-back";
-    card.querySelector(".back p").innerText = record.title;
 }
 
 function handleFavorite(button, id) {
