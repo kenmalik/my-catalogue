@@ -42,7 +42,7 @@ function showCards() {
             imageDir + record.image_src,
         ); // Edit title and image
 
-        populateCard(nextCard, record);
+        nextCard.querySelector(".front").id = record.id + "-front";
 
         nextCard.querySelector(".back").id = record.id + "-back";
         nextCard.querySelector(".back h2").innerText = record.title;
@@ -50,31 +50,32 @@ function showCards() {
         nextCard.querySelector(".card-content").innerHTML =
             nextCard.querySelector(".front").innerHTML;
 
-        const favoriteButton = nextCard.querySelectorAll("button")[0];
-        setFavoriteButtonStyles(favoriteButton, record.favorited);
-        favoriteButton.addEventListener("click", (event) => {
-            event.stopPropagation();
-            handleFavorite(favoriteButton, Number(nextCard.id));
-        });
-
-        const editButton = nextCard.querySelectorAll("button")[1];
-        editButton.addEventListener("click", (event) => {
-            event.stopPropagation();
-            console.log("Edit clicked");
-        });
-
-        const deleteButton = nextCard.querySelectorAll("button")[2];
-        deleteButton.addEventListener("click", (event) => {
-            event.stopPropagation();
-            handleDelete(Number(nextCard.id));
-        });
-
-        cardContainer.appendChild(nextCard);
+        cardContainer.appendChild(nextCard); // Add new card to the container
+        loadFrontButtons(nextCard.id);
     }
 }
 
-function populateCard(card, record) {
-    card.querySelector(".front").id = record.id + "-front";
+function loadFrontButtons(cardId) {
+    const card = document.getElementById(cardId);
+
+    const favoriteButton = card.querySelectorAll("button")[0];
+    setFavoriteButtonStyles(favoriteButton, record.favorited);
+    favoriteButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        handleFavorite(favoriteButton, Number(card.id));
+    });
+
+    const editButton = card.querySelectorAll("button")[1];
+    editButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        console.log("Edit clicked");
+    });
+
+    const deleteButton = card.querySelectorAll("button")[2];
+    deleteButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        handleDelete(Number(card.id));
+    });
 }
 
 function handleFavorite(button, id) {
@@ -217,7 +218,7 @@ function removeColorOverlay(card) {
 
 function flipCard(card) {
     console.log("Flipping", card.id);
-    let content = card.querySelector(".card-content");
+    const content = card.querySelector(".card-content");
     console.log(content);
 
     if (
@@ -227,6 +228,7 @@ function flipCard(card) {
         content.innerHTML = card.querySelector(".back").innerHTML;
     } else {
         content.innerHTML = card.querySelector(".front").innerHTML;
+        loadFrontButtons(card.id);
     }
 
     removeColorOverlay(card);
