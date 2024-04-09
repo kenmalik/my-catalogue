@@ -201,6 +201,16 @@ function updateDisplay() {
         displayed.length + (displayed.length !== 1 ? " results" : " result");
 
     showCards();
+
+    const cardContainer = document.querySelector("#card-container");
+    if (displayed.length == 0) {
+        const noResultsMessage = document.createElement("h3");
+        noResultsMessage.innerText =
+            "No results, try changing your search term and filters";
+        noResultsMessage.id = "no-results";
+        noResultsMessage.style.marginTop = "10%";
+        cardContainer.appendChild(noResultsMessage);
+    }
 }
 
 function chooseEra(lowYear, highYear) {

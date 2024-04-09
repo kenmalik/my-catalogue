@@ -154,6 +154,7 @@ main {
 }
 
 #card-container {
+  font-family: Helvetica, Arial, sans-serif;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
