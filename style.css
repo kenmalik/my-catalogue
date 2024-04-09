@@ -157,7 +157,8 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 20px;
+  min-height: 50vh;
+  margin: 0 4em 8em 4em;
   gap: 100px 50px;
 }
 

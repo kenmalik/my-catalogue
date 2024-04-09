@@ -130,6 +130,7 @@ function loadFrontButtons(cardId) {
     editButton.addEventListener("click", (event) => {
         event.stopPropagation();
         console.log("Edit clicked");
+        handleEdit(Number(card.id));
     });
 
     const deleteButton = card.querySelectorAll("button")[2];
@@ -137,6 +138,23 @@ function loadFrontButtons(cardId) {
         event.stopPropagation();
         handleDelete(Number(card.id));
     });
+}
+
+function handleEdit(id) {
+    const record = records.find((record) => record.id === id);
+    let newTitle = prompt("Enter new title:", record.title);
+    if (newTitle !== "") {
+        record.title = newTitle;
+    }
+    let newYear = prompt("Enter new year:", record.year);
+    if (newYear !== "" && !isNaN(newYear)) {
+        record.year = newYear;
+    }
+    let newImage = prompt("Enter new image_src:", record.image);
+    if (newImage !== "") {
+        record.image_src = newImage;
+    }
+    updateDisplay();
 }
 
 function handleFavorite(button, id) {
