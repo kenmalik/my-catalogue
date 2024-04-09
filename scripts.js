@@ -47,8 +47,7 @@ function showCards() {
         nextCard.querySelector(".back").id = record.id + "-back";
         nextCard.querySelector(".back h2").innerText = record.title;
 
-        nextCard.querySelector(".card-content").innerHTML =
-            nextCard.querySelector(".front").innerHTML;
+        nextCard.querySelector(".front").style.display = "flex";
 
         cardContainer.appendChild(nextCard); // Add new card to the container
         loadFrontButtons(nextCard.id);
@@ -82,7 +81,7 @@ function handleFavorite(button, id) {
     const object = records.find((record) => record.id === id);
     object.favorited = !object.favorited;
     setFavoriteButtonStyles(button, object.favorited);
-    updateDisplay();
+    // updateDisplay();
 }
 
 function handleDelete(id) {
@@ -217,18 +216,12 @@ function removeColorOverlay(card) {
 }
 
 function flipCard(card) {
-    console.log("Flipping", card.id);
-    const content = card.querySelector(".card-content");
-    console.log(content);
-
-    if (
-        content.innerHTML ===
-        document.getElementById(card.id + "-front").innerHTML
-    ) {
-        content.innerHTML = card.querySelector(".back").innerHTML;
+    if (document.getElementById(card.id + "-front").style.display == "flex") {
+        document.getElementById(card.id + "-front").style.display = "none";
+        document.getElementById(card.id + "-back").style.display = "flex";
     } else {
-        content.innerHTML = card.querySelector(".front").innerHTML;
-        loadFrontButtons(card.id);
+        document.getElementById(card.id + "-back").style.display = "none";
+        document.getElementById(card.id + "-front").style.display = "flex";
     }
 
     removeColorOverlay(card);

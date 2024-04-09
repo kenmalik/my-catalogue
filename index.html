@@ -75,39 +75,40 @@
   </main>
 
   <div class="card" style="display: none;">
-    
-    <div class="card-content">
-    </div>
 
-    <div class="card-side front" style="display: none;">
-      <img src="" alt="Album cover" onmouseover="addColorOverlay(this.parentElement.parentElement)"
-        onmouseout="removeColorOverlay(this.parentElement.parentElement)"
-        onclick="flipCard(this.parentElement.parentElement)">
-      <h2>TV Show Title</h2>
-      <h3>2024</h3>
-      <!-- <ul> -->
-      <!--   <li>Bullet Point 1</li> -->
-      <!--   <li>Bullet Point 2</li> -->
-      <!--   <li>Bullet Point 3</li> -->
-      <!-- </ul> -->
-      <div class="change-content-buttons">
-        <button class="favorite-btn">Favorite</button>
-        <div style="display: flex; gap: .5em;">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
+    <div class="card-content">
+      <div class="card-side front" style="display: none;">
+        <img src="" alt="Album cover" onmouseover="addColorOverlay(this.parentElement.parentElement.parentElement)"
+          onmouseout="removeColorOverlay(this.parentElement.parentElement.parentElement)"
+          onclick="flipCard(this.parentElement.parentElement.parentElement)">
+        <h2>TV Show Title</h2>
+        <h3>2024</h3>
+        <!-- <ul> -->
+        <!--   <li>Bullet Point 1</li> -->
+        <!--   <li>Bullet Point 2</li> -->
+        <!--   <li>Bullet Point 3</li> -->
+        <!-- </ul> -->
+        <div class="change-content-buttons">
+          <button class="favorite-btn">Favorite</button>
+          <div style="display: flex; gap: .5em;">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-side back" style="display: none;">
+        <h2>Test</h2>
+        <h3>Personnel:</h3>
+        <ul>
+        </ul>
+        <div class="change-content-buttons">
+          <button onclick="flipCard(this.parentElement.parentElement.parentElement.parentElement)">Flip over</button>
         </div>
       </div>
     </div>
 
-    <div class="card-side back" style="display: none;">
-      <h2>Test</h2>
-      <h3>Personnel:</h3>
-      <ul>
-      </ul>
-      <div class="change-content-buttons">
-        <button onclick="flipCard(this.parentElement.parentElement.parentElement)">Flip over</button>
-      </div>
-    </div>
+
   </div>
 
   <div class="footer">
