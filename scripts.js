@@ -333,3 +333,8 @@ function scrollToRandom() {
         flipCard(record);
     }
 }
+
+function scrollToCatalog() {
+    const catalog = document.getElementById("catalog");
+    catalog.scrollIntoView({ behavior: "smooth" });
+}
