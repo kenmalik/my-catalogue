@@ -7,7 +7,6 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-
   html,
   body {
     font-size: 14px;
@@ -36,6 +35,7 @@ main {
 
 .main-header h1 {
   text-align: center;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -241,6 +241,7 @@ main {
   font-size: 1em;
   padding-bottom: .7em;
   width: 40%;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

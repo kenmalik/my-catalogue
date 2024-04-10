@@ -6,13 +6,11 @@
   <meta name="description" content="A catalog of John Coltrane releases and appearances from 1958-1965">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css" />
-  <script type="text/javascript" src="assets/album-data-final.js"></script>
-  <script type="text/javascript" src="scripts.js"></script>
 </head>
 
 <body>
   <header class="main-header">
-    <h1 class="title">The Coltrane Catalog</h1>
+    <h1 class="title" onclick="scrollToCatalog()">The Coltrane Catalog</h1>
   </header>
 
   <main>
@@ -31,6 +29,7 @@
           src="https://i.discogs.com/fGpBfJZOBOXcombzBDMfneERKusKwmEO03qCaTid4sY/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY4OTA3/NDctMTQyODg4ODc4/NC00ODEzLmpwZWc.jpeg"
           class="album four">
       </div>
+
       <div class="color-overlay"></div>
       <div class="text-overlay">
         <h2>John Coltrane</h2>
@@ -86,8 +85,8 @@
   </main>
 
   <div class="card" style="display: none;">
-
     <div class="card-content">
+
       <div class="card-side front" style="display: none;">
         <img src="" alt="Album cover" onmouseover="addColorOverlay(this.parentElement.parentElement.parentElement)"
           onmouseout="removeColorOverlay(this.parentElement.parentElement.parentElement)"
@@ -111,9 +110,8 @@
           <button onclick="flipCard(this.parentElement.parentElement.parentElement.parentElement)">Flip over</button>
         </div>
       </div>
+
     </div>
-
-
   </div>
 
   <div class="footer">
@@ -124,6 +122,9 @@
       Go to top
     </button>
   </div>
+
+  <script type="text/javascript" src="assets/album-data-final.js"></script>
+  <script type="text/javascript" src="scripts.js"></script>
 </body>
 
 </html>
